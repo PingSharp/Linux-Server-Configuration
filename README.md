@@ -2,13 +2,13 @@
 To complete this Project I have used Amazon Lightsail for a Ubuntu Linux server instanse. To secure my server I have used Uncomplicated Firewall(UFW) to only allow incoming connections for SSH(port 2200), HTTP(port 80),and NTP(port 123).
 ## Getting Started
 
-###IP address
+### IP address
 This static IP is available for public connection worldwide.
 18.185.212.159 
 ssh port: 2200
-###URL
+### URL
 You can visit my catalog item project [here](http://18.185.212.159:80/)
-###summary of software installed
+### summary of software installed
 * Apache
 To get my server responding to HTTP requests i have installed Apache HTTP Server.
 * mod_wsgi
@@ -19,8 +19,8 @@ A database server to store my application's data persistent.
 create a virtual environment for my flask application. use pip to install virtualenv and Flask
 * Psycopg2
 Psycopg is the most popular PostgreSQL adapter for the Python programming language.
-###summary of configurations made
-####Firewall configurations 
+### summary of configurations made
+#### Firewall configurations 
 
 1. Setting up Default Policies
 
@@ -52,7 +52,7 @@ To enable UFW, use this command:
 sudo ufw enable
 ```
 
-####create new user and give the user Sudo Access
+#### create new user and give the user Sudo Access
 
 1. Use the adduser command to add a new user to my system.
 2. Add the new user to the sudoers file 
@@ -75,14 +75,14 @@ touch .ssh/authorized_keys
 chmod 644 .ssh/authorized_keys
 ```
 Edit the authorized_keys file with a text editor.Paste in the public key you previously copied to the clipboard.Save the file.
-####Configure the local timezone to UTC
+#### Configure the local timezone to UTC
 simply execute
 ```
 sudo dpkg-reconfigure tzdata
 ```
 then scroll to the bottom of the Continents list and select None of the above;
 in the second list, select UTC.
-####configure Apache
+#### configure Apache
 Issue the following command in terminal:
 ```
 sudo nano /etc/apache2/sites-available/FlaskApp.conf
@@ -118,7 +118,7 @@ Enable the virtual host with the following command:
 ```
 sudo a2ensite FlaskApp
 ```
-####Create the .wsgi File under your applications directory
+#### Create the .wsgi File under your applications directory
  Move to the /var/www/Item_Catalog/vagrant/ directory and create a file named item_catalog.wsgi with following commands:
  ```
     sudo nano item_catalog.wsgi 
@@ -136,7 +136,7 @@ application.secret_key = 'super_secret_key'
 
 ```
 Save and close the file.
-####configure PostgreSQL
+#### configure PostgreSQL
 1. forbid remote connections
 We can double check that no remote connections are allowed by looking in the host based authentication file:
 ```
@@ -156,7 +156,7 @@ CREATE ROLE xxx WITH ENCRYPTED PASSWORD 'xxx' CREATEDB LOGIN;
 ```
 CREATE DATABASE xxx OWNER xxx
 ```
-####changes in my Item Catalog project
+#### changes in my Item Catalog project
 1. for my database set up I have used sqlalchemy,  I need a data engine for sqlalchemy, before I have used sqlite for the engine,now I have to change it to postgresql+psycopg2.
 ```
 engine = create_engine(
@@ -170,7 +170,7 @@ Finally, restart Apache with the
 sudo apache2ctl restart
 ```
  command.
-###list of third-party resources
+### list of third-party resources
 * [How To Deploy a Flask Application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-four-%E2%80%93-configure-and-enable-a-new-virtual-host)
 * [How to set up a new user on your Amazon AWS server](https://www.brianlinkletter.com/how-to-set-up-a-new-userid-on-your-amazon-aws-server-instance/)
 * [How To Secure PostgreSQL on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)

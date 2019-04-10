@@ -10,14 +10,19 @@ ssh port: 2200
 You can visit my catalog item project [here](http://18.185.212.159:80/)
 ### summary of software installed
 * Apache
+
 To get my server responding to HTTP requests i have installed Apache HTTP Server.
 * mod_wsgi
+
 Mod_wsgi is an Apache HTTP server mod that enables Apache to serve Flask applications.
 * PostgreSQL
+
 A database server to store my application's data persistent.
 * Flask
+
 create a virtual environment for my flask application. use pip to install virtualenv and Flask
 * Psycopg2
+
 Psycopg is the most popular PostgreSQL adapter for the Python programming language.
 ### summary of configurations made
 #### Firewall configurations 
@@ -65,6 +70,7 @@ then add the following line after the comment line, “User privilege specificat
 xxx  ALL=(ALL:ALL) ALL
 ```
 Then,save the file.
+
 3. Install the public key for the new user
 We cannot log into the new user account via SSH until the public key from the linux instance’s key pair is installed for the new user. We must copy the public key installed for the ubuntu user and paste it into the right file in the new user account. The public key is in the file, ~/.ssh/authorized_keys.
 Now, switch to the new user account,ensure you are in the new user's home directory,then create the SSH directory and authorized users file,with the correct permissions:
